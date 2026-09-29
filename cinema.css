@@ -1,0 +1,323 @@
+/* ============================================================================
+   AMARI: the inner pages, in the same world as the home.
+   Dark ground, full-bleed footage, Fraunces at size, copy over image.
+   This file themes the scrollcraft engine and adds only this site's own
+   classes. Nothing here restyles .sc-stage, .sc-copy or any [data-sc-*].
+   ========================================================================== */
+:root{
+  --olive:#3B4921; --sage:#849D63; --khaki:#BCAD8F;
+  --cream:#F1E3C9; --eucalyptus:#BCCBBA;
+
+  --sc-canvas:#12170C;
+  --sc-surface:#1C2413;
+  --sc-ink:var(--cream);
+  --sc-ink-soft:#C7CFB4;
+  --sc-accent:var(--khaki);
+  --sc-accent-ink:#1A2010;
+
+  --sc-font-display:"Fraunces",Georgia,serif;
+  --sc-font-text:"DM Sans",-apple-system,"Segoe UI",sans-serif;
+  --sc-gutter:clamp(1.25rem,4vw,4.5rem);
+  --eyebrow:"Montserrat",var(--sc-font-text);
+}
+body{background:var(--sc-canvas);color:var(--sc-ink)}
+.sc-display{font-weight:300;letter-spacing:var(--sc-track-snug)}
+.eyebrow{font-family:var(--eyebrow);font-size:.62rem;font-weight:600;letter-spacing:.24em;
+  text-transform:uppercase;margin:0 0 1rem;
+  color:color-mix(in oklab,var(--sc-accent) 55%,var(--cream))}
+.accent{color:var(--sc-accent)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--sc-accent);outline-offset:4px}
+
+/* ---------------------------------------------------------------- chrome -- */
+.top{position:fixed;inset:0 0 auto 0;z-index:80;display:flex;align-items:center;
+  justify-content:space-between;gap:1rem;
+  padding:clamp(.9rem,2.2vw,1.5rem) var(--sc-gutter);pointer-events:none;
+  background:linear-gradient(180deg,color-mix(in oklab,var(--sc-canvas) 62%,transparent),transparent)}
+.top a{pointer-events:auto}
+.wordmark{display:flex;align-items:baseline;gap:.7rem;text-decoration:none}
+.wordmark b{font-family:var(--sc-font-display);font-weight:600;font-size:1.06rem;
+  letter-spacing:.34em;text-indent:.34em}
+.wordmark span{font-family:var(--eyebrow);font-size:.58rem;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--sc-ink-soft)}
+@media (max-width:560px){.wordmark span{display:none}}
+.topnav{display:flex;align-items:center;gap:1.4rem;margin-inline:auto;
+  font-family:var(--eyebrow);font-size:.62rem;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase}
+.topnav a{text-decoration:none;color:color-mix(in oklab,var(--cream) 80%,transparent);
+  padding-block:.4rem}
+.topnav a:hover,.topnav a[aria-current="page"]{color:var(--cream)}
+.topnav__lang{border:1px solid color-mix(in oklab,var(--cream) 36%,transparent);
+  padding:.28rem .5rem}
+@media (max-width:980px){.topnav{display:none}}
+.enquire{font-family:var(--eyebrow);font-size:.62rem;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;text-decoration:none;padding:.72rem 1.15rem;
+  border:1px solid color-mix(in oklab,var(--cream) 40%,transparent);
+  background:color-mix(in oklab,var(--sc-canvas) 34%,transparent);
+  backdrop-filter:blur(6px);white-space:nowrap}
+.enquire:hover{background:var(--cream);color:var(--sc-accent-ink);border-color:var(--cream)}
+@media (max-width:460px){.enquire{display:none}}
+
+/* ------------------------------------------------------------------ rail -- */
+/* The pan act. Horizontal travel reads as "a set to choose from"; a vertical
+   stack of the same four would read as an argument, which they are not. */
+.rail{align-items:center;gap:clamp(1.5rem,4vw,3.5rem);
+  padding-inline:var(--sc-gutter);height:100%}
+.rail__lead{flex:0 0 clamp(17rem,30vw,25rem)}
+.rail__lead .sc-body{margin-top:1rem}
+.villa{flex:0 0 clamp(16rem,26vw,21rem);display:flex;flex-direction:column;gap:.5rem}
+.villa__shot{overflow:hidden;margin-bottom:.9rem;background:var(--sc-surface)}
+.villa__shot img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+.villa__tag{font-family:var(--eyebrow);font-size:.56rem;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--sc-accent);margin:0}
+.villa--gone .villa__tag{color:var(--sc-ink-soft)}
+.villa--gone .villa__shot img{filter:saturate(.45) brightness(.78)}
+.villa__price{font-family:var(--sc-font-display);font-weight:400;font-size:1.65rem;
+  line-height:1;font-variant-numeric:tabular-nums;margin:.1rem 0 .2rem}
+.villa__spec{font-size:.86rem;color:var(--sc-ink-soft);margin:0}
+.villa .sc-body{font-size:.92rem;margin-top:.3rem}
+.link{font-family:var(--eyebrow);font-size:.6rem;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;text-decoration:none;margin-top:.7rem;align-self:flex-start;
+  border-bottom:1px solid var(--sc-accent);padding-bottom:.25rem}
+.link:hover{color:var(--sc-accent)}
+
+/* -------------------------------------------------------------- argument -- */
+/* NO `position` here. These classes sit on the same element as .sc-stage, which
+   is position:sticky at equal specificity, and this file loads later. Setting
+   position:relative here silently wins and the act scrolls away instead of
+   pinning. The engine's own stylesheet warns about exactly this. */
+.argument{display:grid;place-items:center}
+.argument__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:.3;filter:saturate(.8)}
+.argument__in{position:relative;width:100%;max-width:var(--sc-maxw);
+  padding-inline:var(--sc-gutter);display:flex;flex-direction:column;gap:clamp(.7rem,2vh,1.4rem)}
+.argument__in p{margin:0;max-width:22ch}
+.argument__in p.accent{max-width:26ch}
+
+/* ----------------------------------------------------------------- facts -- */
+.facts{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.6rem,5vw,4rem);
+  align-items:start}
+@media (max-width:900px){.facts{grid-template-columns:minmax(0,1fr)}}
+.asks{list-style:none;margin:0;padding:0;counter-reset:a;
+  border-top:1px solid var(--sc-hairline)}
+.asks li{counter-increment:a;padding:1rem 0 1rem 2.6rem;position:relative;
+  border-bottom:1px solid var(--sc-hairline);font-size:1rem}
+.asks li::before{content:counter(a,decimal-leading-zero);position:absolute;left:0;top:1.05rem;
+  font-family:var(--eyebrow);font-size:.6rem;font-weight:600;letter-spacing:.1em;
+  color:var(--sc-accent)}
+
+/* ----------------------------------------------------------------- close -- */
+.close{display:grid;place-items:center}
+.close__in{position:relative;width:100%;max-width:var(--sc-maxw);
+  padding-inline:var(--sc-gutter);display:flex;flex-direction:column;gap:1.2rem}
+.close__in h2{max-width:18ch;margin:0}
+.close__acts{display:flex;gap:.7rem;flex-wrap:wrap}
+.btn{font-family:var(--eyebrow);font-size:.64rem;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;text-decoration:none;padding:.95rem 1.6rem;
+  background:var(--cream);color:var(--sc-accent-ink);border:1px solid var(--cream)}
+.btn:hover{background:transparent;color:var(--cream)}
+.btn--ghost{background:transparent;color:var(--sc-ink);
+  border-color:color-mix(in oklab,var(--cream) 40%,transparent)}
+.btn--ghost:hover{background:var(--cream);color:var(--sc-accent-ink)}
+.foot{display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;justify-content:space-between;
+  align-items:center;margin-top:clamp(1.5rem,5vh,3rem);padding-top:1.1rem;
+  border-top:1px solid var(--sc-hairline);
+  font-size:.8rem;color:var(--sc-ink-soft)}
+.foot nav{display:flex;gap:1.2rem;flex-wrap:wrap;font-family:var(--eyebrow);font-size:.58rem;
+  font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--cream)}
+
+/* ------------------------------------------------------------- narrative -- */
+/* Used by Stay and the guides: a run of full-bleed image bands with copy over
+   them, rather than cards on a light ground. */
+.band{position:relative;min-height:clamp(70vh,84vh,900px);display:grid;place-items:center;
+  overflow:clip}
+.band__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.42}
+.band__in{position:relative;width:100%;max-width:var(--sc-maxw);
+  padding-inline:var(--sc-gutter);padding-block:clamp(3rem,9vh,6rem)}
+.band--split .band__in{display:grid;grid-template-columns:1.02fr .98fr;
+  gap:clamp(1.6rem,5vw,4rem);align-items:center}
+@media (max-width:900px){.band--split .band__in{grid-template-columns:minmax(0,1fr)}}
+.plate{background:color-mix(in oklab,var(--sc-canvas) 82%,transparent);
+  backdrop-filter:blur(3px);border:1px solid var(--sc-hairline);
+  padding:clamp(1.3rem,2.6vw,2.2rem);display:flex;flex-direction:column;gap:.9rem}
+.plate h3{margin:0}
+.rows{display:flex;flex-direction:column}
+.rows .r{display:flex;justify-content:space-between;gap:1.2rem;padding-block:.75rem;
+  border-bottom:1px solid var(--sc-hairline);font-size:.96rem}
+.rows .r:last-child{border-bottom:0}
+.rows .r b{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+
+table.data{width:100%;border-collapse:collapse;font-size:.92rem}
+table.data th,table.data td{text-align:left;padding:.75rem .85rem;
+  border-bottom:1px solid var(--sc-hairline);vertical-align:top}
+table.data th{font-family:var(--eyebrow);font-size:.56rem;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--sc-accent);white-space:nowrap}
+table.data td.n{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--sc-ink)}
+.scroller{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+.bul{display:flex;flex-direction:column;gap:.6rem;padding:0;margin:0;list-style:none}
+.bul li{padding-left:1.15rem;position:relative}
+.bul li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;
+  background:var(--sc-accent)}
+.note{font-size:.84rem;color:var(--sc-ink-soft);line-height:1.55;max-width:66ch}
+
+@media (prefers-reduced-motion:reduce){
+  .villa__shot img,.argument__bg,.band__bg{transition:none}
+}
+
+/* ---------------------------------------------------------------- passes -- */
+/* Cowork pricing. A row of five plates; the monthly one carries the accent. */
+.passes{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(.8rem,1.6vw,1.2rem);
+  margin-top:clamp(2rem,6vh,3.5rem)}
+@media (max-width:1180px){.passes{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:760px){.passes{grid-template-columns:minmax(0,1fr)}}
+.pass{display:flex;flex-direction:column;gap:.55rem;padding:clamp(1.2rem,2vw,1.6rem);
+  border:1px solid var(--sc-hairline);background:color-mix(in oklab,var(--sc-surface) 70%,transparent)}
+.pass h3{margin:0;font-size:1.45rem;font-weight:400}
+.pass__price{font-family:var(--sc-font-display);font-size:2rem;line-height:1;margin:.2rem 0 .6rem;
+  font-variant-numeric:tabular-nums}
+.pass__price small{font-family:var(--eyebrow);font-size:.52rem;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--sc-ink-soft);vertical-align:middle}
+.pass .bul{font-size:.88rem;color:var(--sc-ink-soft);gap:.45rem}
+.pass--lead{border-color:var(--sc-accent);background:color-mix(in oklab,var(--olive) 38%,var(--sc-canvas))}
+.argument__bg--lift{opacity:.46}
+
+/* --------------------------------------------------------------- kitchen -- */
+/* Amari Villa Kitchen: the menu set in the AMARI palette. Dishes sit on the
+   dark ground like the villa cards; the Cidro achiote red is not carried over. */
+.kprice{font-family:var(--sc-font-display);font-size:clamp(2.4rem,5vw,3.6rem);line-height:1;margin:.4rem 0 .6rem;
+  font-variant-numeric:tabular-nums}
+.kprice small,.dish__price small{font-family:var(--eyebrow);font-size:.56rem;font-weight:600;letter-spacing:.14em;color:var(--sc-ink-soft)}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin:clamp(1.6rem,4vh,2.4rem) 0 .5rem}
+.chips a{font-family:var(--eyebrow);font-size:.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  text-decoration:none;padding:.6rem .95rem;border:1px solid color-mix(in oklab,var(--cream) 30%,transparent)}
+.chips a:hover{background:var(--cream);color:var(--sc-accent-ink)}
+.course{padding-top:clamp(2.4rem,7vh,4rem);scroll-margin-top:5rem}
+.course__head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;
+  padding-bottom:.9rem;margin-bottom:1.4rem;border-bottom:1px solid var(--sc-hairline)}
+.course__head h3{margin:0;font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:300}
+.course__head span{font-family:var(--eyebrow);font-size:.6rem;font-weight:600;letter-spacing:.18em;color:var(--sc-accent)}
+.dishes{display:grid;grid-template-columns:repeat(auto-fill,minmax(15.5rem,1fr));gap:clamp(1.2rem,2.4vw,2rem)}
+.dish{display:flex;flex-direction:column;gap:.45rem}
+.dish__shot{overflow:hidden;background:var(--sc-surface);margin-bottom:.5rem}
+.dish__shot img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .8s ease}
+.dish:hover .dish__shot img{transform:scale(1.04)}
+.dish__row{display:flex;justify-content:space-between;align-items:baseline;gap:.8rem}
+.dish__row h4{margin:0;font-family:var(--sc-font-display);font-weight:400;font-size:1.3rem;line-height:1.15}
+.dish__price{font-family:var(--sc-font-display);font-size:1.15rem;font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--sc-accent)}
+.dish p{margin:0;font-size:.9rem;line-height:1.55;color:var(--sc-ink-soft)}
+.tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.2rem}
+.tag{font-family:var(--eyebrow);font-size:.5rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  padding:.3rem .5rem;border:1px solid var(--sc-hairline);color:var(--sc-ink-soft)}
+.tag--sig{border-color:var(--sc-accent);color:var(--sc-accent)}
+.tag--hot{border-color:color-mix(in oklab,#C8553D 70%,transparent);color:#E08A72}
+.course__extras{margin-top:1.6rem;max-width:44rem}
+.rows .r small{display:block;font-size:.8rem;color:var(--sc-ink-soft);margin-top:.15rem}
+.rows .r strong{font-weight:500}
+.passes--3{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:0}
+@media (max-width:560px){.passes--3{grid-template-columns:minmax(0,1fr)}}
+.klass{justify-content:flex-start}
+.klass h3{margin:0;font-size:1.55rem;font-weight:400}
+.klass__price{font-family:var(--sc-font-display);font-size:1.2rem;color:var(--sc-accent);margin:.4rem 0 0}
+.band--dim .band__bg{opacity:.24;filter:saturate(.85)}
+
+/* ------------------------------------------------------------ macro prep -- */
+.steps li{display:flex;flex-direction:column;gap:.3rem;padding-block:1.15rem}
+.steps li strong{font-family:var(--sc-font-display);font-weight:400;font-size:1.25rem}
+.steps li span{color:var(--sc-ink-soft);font-size:.94rem;line-height:1.55}
+.passes--4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:1100px){.passes--4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.passes--4{grid-template-columns:minmax(0,1fr)}}
+.macros td:nth-child(3){color:var(--sc-ink-soft);min-width:16rem}
+.macros tr.tot td{border-top:1px solid var(--sc-accent);color:var(--sc-accent);font-weight:600}
+.rows .r--strike b{text-decoration:line-through;color:var(--sc-ink-soft);font-weight:400}
+.rows .r--lead{padding-top:1rem}
+.rows .r--lead span{font-family:var(--sc-font-display);font-size:1.3rem}
+.rows .r--lead b{font-family:var(--sc-font-display);font-size:1.3rem;color:var(--sc-accent)}
+.band .facts .plate .sc-body{font-size:.95rem}
+.argument__in .sc-body{max-width:44ch}
+
+/* ------------------------------------------------------------- day slider -- */
+.dayline{position:relative;min-height:100svh;display:grid;align-items:end;overflow:clip;padding:0}
+.dayline__stage{position:absolute;inset:0}
+.dayline__img{position:absolute;inset:0;margin:0;opacity:0;transition:opacity .7s ease}
+.dayline__img.is-on{opacity:1}
+.dayline__img img{width:100%;height:100%;object-fit:cover;opacity:.4;transform:scale(1.04);transition:transform 6s ease}
+.dayline__img.is-on img{transform:scale(1)}
+.dayline::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,color-mix(in oklab,var(--sc-canvas) 78%,transparent) 0%,transparent 70%),
+             linear-gradient(0deg,var(--sc-canvas) 0%,transparent 45%)}
+.dayline__in{position:relative;z-index:1;width:100%;max-width:var(--sc-maxw);margin-inline:auto;
+  padding:clamp(6rem,14vh,9rem) var(--sc-gutter) clamp(2rem,6vh,3.5rem);display:flex;flex-direction:column;gap:1rem}
+.dayline__in h1{margin:0;max-width:12ch}
+.dayline__now{min-height:9.5rem;max-width:40rem}
+.dayline__now h2{margin:.1rem 0 .4rem}
+.dayline__time{font-family:var(--sc-font-display);font-size:clamp(2rem,4vw,3rem);line-height:1;margin:0;color:var(--sc-accent);
+  font-variant-numeric:tabular-nums}
+.dayline__ctl{max-width:62rem}
+.dayline__ctl input{width:100%;accent-color:var(--khaki);margin:.4rem 0 .2rem;height:1.6rem;cursor:grab}
+.dayline__ticks{display:grid;grid-template-columns:repeat(8,1fr);gap:.2rem}
+.dayline__tick{background:none;border:0;border-top:2px solid var(--sc-hairline);color:var(--sc-ink-soft);
+  padding:.5rem 0 0;text-align:left;cursor:pointer;font:inherit}
+.dayline__tick b{display:block;font-family:var(--eyebrow);font-size:.56rem;letter-spacing:.12em}
+.dayline__tick span{font-size:.72rem}
+.dayline__tick.is-on{border-color:var(--sc-accent);color:var(--cream)}
+@media (max-width:700px){.dayline__tick span{display:none}.dayline__tick b{font-size:.5rem}}
+
+/* ------------------------------------------------------------ word band -- */
+.words{overflow:hidden;border-block:1px solid var(--sc-hairline);padding:1.1rem 0;background:var(--sc-canvas)}
+.words__track{display:flex;gap:2.4rem;width:max-content;animation:words 40s linear infinite}
+.words span{font-family:var(--sc-font-display);font-weight:300;font-size:clamp(1.4rem,2.6vw,2.2rem);white-space:nowrap;
+  color:color-mix(in oklab,var(--cream) 78%,transparent)}
+.words span:nth-child(odd){color:var(--sc-accent);font-style:italic}
+@keyframes words{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.words__track{animation:none}.dayline__img,.dayline__img img{transition:none}}
+
+/* ----------------------------------------------------------- calculator -- */
+.calc{display:grid;grid-template-columns:minmax(16rem,.9fr) 1.3fr minmax(16rem,.9fr);gap:clamp(1rem,2vw,1.6rem);
+  margin-top:clamp(1.8rem,5vh,3rem);align-items:start}
+@media (max-width:1100px){.calc{grid-template-columns:1fr 1fr}.calc__menu{grid-column:1/-1;order:3}}
+@media (max-width:700px){.calc{grid-template-columns:minmax(0,1fr)}}
+.calc__w{display:flex;gap:.5rem;align-items:stretch}
+.calc__w input{flex:1;min-width:0;background:transparent;border:1px solid var(--sc-hairline);color:var(--cream);
+  font-family:var(--sc-font-display);font-size:1.8rem;padding:.3rem .7rem}
+.unit{display:flex;border:1px solid var(--sc-hairline)}
+.unit button,.seg{background:none;border:0;color:var(--sc-ink-soft);font:inherit;cursor:pointer}
+.unit button{padding:0 .9rem;font-family:var(--eyebrow);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase}
+.unit button.is-on{background:var(--cream);color:var(--sc-accent-ink)}
+.calc__goals{display:grid;gap:.4rem}
+.seg{text-align:left;border:1px solid var(--sc-hairline);padding:.7rem .85rem}
+.seg b{display:block;font-family:var(--sc-font-display);font-weight:400;font-size:1.1rem;color:var(--cream)}
+.seg small{font-size:.8rem}
+.seg.is-on{border-color:var(--sc-accent);background:color-mix(in oklab,var(--olive) 35%,transparent)}
+.bars{display:grid;gap:.8rem}
+.bar__top{display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:.3rem}
+.bar__top b{font-weight:500;font-variant-numeric:tabular-nums}
+.bar__top em{font-style:normal}
+.bar__top [data-t]{color:var(--sc-ink-soft)}
+.bar__track{height:6px;background:var(--sc-hairline)}
+.bar__track i{display:block;height:100%;width:0;background:var(--sage);transition:width .4s ease}
+.bar.is-hit .bar__track i{background:var(--khaki)}
+.bar.is-over .bar__track i{background:#C8553D}
+.picks{display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:.5rem}
+.pick{display:grid;grid-template-columns:3.4rem 1fr auto;gap:.7rem;align-items:center;text-align:left;cursor:pointer;
+  background:color-mix(in oklab,var(--sc-surface) 70%,transparent);border:1px solid var(--sc-hairline);color:var(--cream);
+  padding:.4rem .7rem .4rem .4rem;font:inherit}
+.pick:hover{border-color:var(--sc-accent)}
+.pick img{width:3.4rem;height:3.4rem;object-fit:cover;display:block}
+.pick b{display:block;font-weight:500;font-size:.9rem}
+.pick small{font-size:.72rem;color:var(--sc-ink-soft)}
+.pick i{font-style:normal;font-family:var(--sc-font-display);font-size:1.4rem;color:var(--sc-accent)}
+.myday{list-style:none;margin:0;padding:0;display:grid}
+.myday li{display:flex;justify-content:space-between;gap:.6rem;align-items:center;padding:.65rem 0;border-bottom:1px solid var(--sc-hairline)}
+.myday b{display:block;font-weight:500;font-size:.92rem}
+.myday small{font-size:.74rem;color:var(--sc-ink-soft)}
+.myday button{background:none;border:1px solid var(--sc-hairline);color:var(--sc-ink-soft);width:1.8rem;height:1.8rem;cursor:pointer;flex:none}
+.myday button:hover{color:var(--cream);border-color:var(--cream)}
+.calc__day .btn{text-align:center}
+.shot figcaption h3{margin:0 0 .3rem}
+.shot{margin:0}
+.dayline{overflow:hidden!important}.words{contain:paint;max-width:100%}
+.rows .r b{white-space:normal;text-align:right}.facts>*{min-width:0}

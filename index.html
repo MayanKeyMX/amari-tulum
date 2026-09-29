@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en" data-sc-lerp="0.12">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AMARI Uptown Tulum</title>
+<meta name="description" content="Forty-six private villas under the jungle canopy in Uptown Tulum. Fly the site from the canopy to the door, and hold the light where you want it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%233B4921'/%3E%3Cpath d='M6 24 16 8l10 16h-3.6L16 13.2 9.6 24Z' fill='%23F1E3C9'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=DM+Sans:wght@400;500&family=Montserrat:wght@500;600&display=swap">
+<link rel="stylesheet" href="/scrollcraft.css">
+<style>
+:root{
+  /* AMARI brand tokens (brand.amaritulum.com v1.010) mapped onto the engine's roles */
+  --olive:#3B4921; --sage:#849D63; --graygreen:#71806F; --khaki:#BCAD8F;
+  --cream:#F1E3C9; --eucalyptus:#BCCBBA;
+
+  --sc-canvas:#12170C;
+  --sc-surface:#1C2413;
+  --sc-ink:var(--cream);
+  --sc-ink-soft:#C7CFB4;
+  --sc-accent:var(--khaki);
+  --sc-accent-ink:#1A2010;
+
+  --sc-font-display:"Fraunces",Georgia,serif;
+  --sc-font-text:"DM Sans",-apple-system,"Segoe UI",sans-serif;
+  --sc-gutter:clamp(1.25rem,4vw,4.5rem);
+  --eyebrow:"Montserrat",var(--sc-font-text);
+}
+html,body{margin:0;background:var(--sc-canvas);color:var(--sc-ink);
+  font:var(--sc-t-base)/var(--sc-leading-body) var(--sc-font-text);
+  -webkit-font-smoothing:antialiased}
+body{overflow-x:hidden}
+h1,h2,p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--sc-accent);outline-offset:4px}
+
+/* ---------------------------------------------------------------- chrome -- */
+.top{position:fixed;inset:0 0 auto 0;z-index:80;display:flex;align-items:center;
+  justify-content:space-between;gap:1rem;
+  padding:clamp(.9rem,2.2vw,1.5rem) var(--sc-gutter);
+  pointer-events:none;
+  background:linear-gradient(180deg,color-mix(in oklab,var(--sc-canvas) 52%,transparent),transparent)}
+.top a,.top button{pointer-events:auto}
+.wordmark{display:flex;align-items:baseline;gap:.7rem;text-decoration:none}
+.wordmark b{font-family:var(--sc-font-display);font-weight:600;font-size:1.06rem;
+  letter-spacing:.34em;text-indent:.34em}
+.wordmark span{font-family:var(--eyebrow);font-size:.58rem;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--sc-ink-soft)}
+/* the bar that reaches the rest of the site. It sits over live footage, so it
+   carries its own weight rather than relying on the stage behind it. */
+.topnav{display:flex;align-items:center;gap:1.4rem;margin-inline:auto;
+  font-family:var(--eyebrow);font-size:.62rem;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase}
+.topnav a{text-decoration:none;color:color-mix(in oklab,var(--cream) 82%,transparent);
+  padding-block:.4rem}
+.topnav a:hover{color:var(--cream)}
+.topnav__lang{border:1px solid color-mix(in oklab,var(--cream) 36%,transparent);
+  padding:.28rem .5rem}
+@media (max-width:900px){.topnav{display:none}}
+@media (max-width:560px){.wordmark span{display:none}}
+.enquire{font-family:var(--eyebrow);font-size:.62rem;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;text-decoration:none;padding:.72rem 1.15rem;
+  border:1px solid color-mix(in oklab,var(--cream) 40%,transparent);
+  background:color-mix(in oklab,var(--sc-canvas) 30%,transparent);
+  backdrop-filter:blur(6px);white-space:nowrap}
+.enquire:hover{background:var(--cream);color:var(--sc-accent-ink);border-color:var(--cream)}
+
+/* route rail: six hairlines, right edge. Two numbers from the engine, nothing else. */
+.route{position:fixed;right:calc(var(--sc-gutter) * .85);top:50%;translate:0 -50%;z-index:70;
+  display:flex;flex-direction:column;gap:.85rem;align-items:flex-end;pointer-events:none}
+@media (max-width:760px){.route{display:none}}
+.route li{list-style:none;display:flex;align-items:center;gap:.6rem;
+  font-family:var(--eyebrow);font-size:.55rem;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:transparent;transition:color .4s ease}
+.route li i{display:block;height:1px;width:14px;background:color-mix(in oklab,var(--cream) 34%,transparent);
+  transition:width .45s cubic-bezier(.2,.7,.2,1),background .45s ease}
+.route li[aria-current="true"]{color:var(--sc-ink)}
+.route li[aria-current="true"] i{width:38px;background:var(--sc-accent)}
+
+/* ------------------------------------------------------------------ copy -- */
+/* `.sc-copy p` also matches this element and is one step more specific, so the
+   eyebrow has to be qualified or it silently renders as muted body text. */
+.eyebrow,.sc-copy p.eyebrow{font-family:var(--eyebrow);font-size:.62rem;font-weight:600;
+  letter-spacing:.24em;text-transform:uppercase;margin-top:0;margin-bottom:1.1rem;
+  max-width:none;color:color-mix(in oklab,var(--sc-accent) 55%,var(--cream))}
+h1,h2{font-family:var(--sc-font-display);font-weight:300;line-height:var(--sc-leading-tight);
+  letter-spacing:var(--sc-track-snug);text-wrap:balance}
+h1{font-size:var(--sc-t-3xl);max-width:15ch}
+h2{font-size:var(--sc-t-2xl);max-width:17ch}
+.sc-copy p{margin-top:1.15rem;max-width:40ch;color:var(--sc-ink-soft);font-size:var(--sc-t-base)}
+.sc-copy--trail p{margin-left:auto}
+.mono{font-variant-numeric:tabular-nums}
+
+/* The peak carries one line and nothing else, and it sits clear above the time
+   rail rather than sharing the bottom band with it. */
+.sc-copy--peak{bottom:clamp(9.5rem,23vh,14rem)}
+/* The peak line floats mid-frame, clear of the bottom band, so it carries its
+   own scrim shaped to the text rather than borrowing a page-wide overlay. */
+.sc-copy--peak::before{content:"";position:absolute;
+  inset:-1.6rem -2.6rem -1.8rem -2.6rem;z-index:-1;pointer-events:none;
+  inset:-3rem -6rem -3.4rem -4rem;
+  background:radial-gradient(150% 175% at 18% 50%,
+    color-mix(in oklab,var(--sc-canvas) 76%,transparent) 0%,
+    color-mix(in oklab,var(--sc-canvas) 46%,transparent) 38%,
+    color-mix(in oklab,var(--sc-canvas) 18%,transparent) 68%,
+    transparent 100%)}
+.peak{font-family:var(--sc-font-display);font-weight:300;font-size:var(--sc-t-xl);
+  line-height:1.2;max-width:22ch;letter-spacing:var(--sc-track-snug)}
+
+/* finale */
+.finale h2{max-width:20ch}
+.lineup{display:flex;flex-wrap:wrap;gap:.35rem 1.8rem;margin-top:1.4rem;
+  padding-top:1.1rem;border-top:1px solid color-mix(in oklab,var(--cream) 22%,transparent);
+  font-size:var(--sc-t-sm)}
+.lineup div{display:flex;flex-direction:column;gap:.12rem}
+.lineup b{font-family:var(--sc-font-display);font-weight:400;font-size:1.22rem;
+  font-variant-numeric:tabular-nums}
+.lineup span{font-family:var(--eyebrow);font-size:.55rem;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--sc-ink-soft)}
+.lineup div.gone b{color:var(--sc-ink-soft)}
+.sc-copy p.urgency{margin-top:1.1rem;max-width:46ch;color:var(--sc-ink);font-size:var(--sc-t-sm)}
+.acts{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.2rem}
+.btn{font-family:var(--eyebrow);font-size:.64rem;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;text-decoration:none;padding:.9rem 1.5rem;
+  background:var(--cream);color:var(--sc-accent-ink)}
+.btn.ghost{background:transparent;color:var(--sc-ink);
+  border:1px solid color-mix(in oklab,var(--cream) 40%,transparent)}
+.sc-copy p.fineprint{margin-top:1.3rem;max-width:54ch;}
+.fineprint{margin-top:1.3rem;font-size:.76rem;color:var(--sc-ink-soft);max-width:52ch;line-height:1.5}
+
+/* --------------------------------------------------------- the time rail -- */
+/* Signature move. The handle does not play the clip: it steers the page.
+   Dragging it scrolls the window inside leg 5's slice of the track, so the sun
+   goes back to dawn and the scroll position goes with it. */
+.timerail{position:fixed;left:var(--sc-gutter);right:var(--sc-gutter);
+  bottom:clamp(1.6rem,5vh,3.2rem);z-index:75;
+  opacity:0;visibility:hidden;transition:opacity .55s ease,visibility .55s;
+  pointer-events:none}
+.timerail[data-live="1"]{opacity:1;visibility:visible;pointer-events:auto}
+.timerail::before{content:"";position:absolute;z-index:-1;pointer-events:none;
+  inset:-1.5rem calc(var(--sc-gutter) * -1) -2.4rem calc(var(--sc-gutter) * -1);
+  background:linear-gradient(0deg,
+    color-mix(in oklab,var(--sc-canvas) 88%,transparent) 0%,
+    color-mix(in oklab,var(--sc-canvas) 72%,transparent) 58%,
+    transparent 100%)}
+.timerail__head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  margin-bottom:.85rem}
+.timerail__hint{font-family:var(--eyebrow);font-size:.55rem;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--sc-accent)}
+.timerail__clock{font-family:var(--sc-font-display);font-weight:300;
+  font-size:clamp(1.6rem,4.4vw,2.6rem);line-height:1;font-variant-numeric:tabular-nums;
+  letter-spacing:var(--sc-track-snug)}
+.timerail__track{position:relative;height:34px;cursor:ew-resize;touch-action:none}
+.timerail__track::before{content:"";position:absolute;left:0;right:0;top:16px;height:1px;
+  background:color-mix(in oklab,var(--cream) 30%,transparent)}
+.timerail__ticks{position:absolute;inset:0;display:flex;justify-content:space-between;
+  pointer-events:none}
+.timerail__ticks i{width:1px;height:9px;margin-top:12px;
+  background:color-mix(in oklab,var(--cream) 34%,transparent)}
+.timerail__ticks i.major{height:17px;margin-top:8px;
+  background:color-mix(in oklab,var(--cream) 55%,transparent)}
+.timerail__handle{position:absolute;top:0;left:0;width:34px;height:34px;margin-left:-17px;
+  border-radius:50%;background:var(--cream);
+  box-shadow:0 6px 22px rgb(0 0 0 / .45);
+  display:grid;place-items:center;will-change:transform}
+.timerail__handle::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--olive)}
+.timerail__handle:focus-visible{outline:2px solid var(--sc-accent);outline-offset:5px}
+.timerail__scale{display:flex;justify-content:space-between;margin-top:.55rem;
+  font-family:var(--eyebrow);font-size:.55rem;font-weight:600;letter-spacing:.16em;
+  color:var(--sc-ink-soft);font-variant-numeric:tabular-nums}
+@media (max-width:560px){
+  .timerail__scale span:nth-child(even){visibility:hidden}
+}
+
+/* a scrim shaped to where the copy actually sits */
+.plate{position:absolute;inset:auto 0 0 0;height:74%;
+  background:linear-gradient(0deg,
+    color-mix(in oklab,var(--sc-canvas) 95%,transparent) 0%,
+    color-mix(in oklab,var(--sc-canvas) 88%,transparent) 22%,
+    color-mix(in oklab,var(--sc-canvas) 66%,transparent) 46%,
+    color-mix(in oklab,var(--sc-canvas) 28%,transparent) 72%,
+    transparent 100%)}
+/* the lead column carries the longest copy over the brightest footage, so it
+   gets a little extra on its own side rather than a full-frame overlay */
+.plate--lead{inset:auto auto 0 0;width:min(70%,58rem);height:74%;
+  background:linear-gradient(74deg,
+    color-mix(in oklab,var(--sc-canvas) 82%,transparent) 0%,
+    color-mix(in oklab,var(--sc-canvas) 58%,transparent) 38%,
+    color-mix(in oklab,var(--sc-canvas) 24%,transparent) 68%,
+    transparent 90%)}
+/* On the day leg the changing light is the whole content, and a heavy band
+   flattens it into one brown frame. The page-wide scrim steps back there; the
+   single line of copy on that leg carries its own scrim instead. */
+.plate,.plate--lead,.plate--day{transition:opacity .7s ease}
+/* The day leg swaps the tall band for a short, strong one: the bottom strip that
+   carries the line and the rail stays dark, and the top half of the frame, where
+   the light actually changes, is left alone. Cross-faded, so no flash at the seam. */
+.plate--day{position:absolute;inset:auto 0 0 0;height:52%;opacity:0;
+  background:linear-gradient(0deg,
+    color-mix(in oklab,var(--sc-canvas) 95%,transparent) 0%,
+    color-mix(in oklab,var(--sc-canvas) 86%,transparent) 26%,
+    color-mix(in oklab,var(--sc-canvas) 52%,transparent) 58%,
+    color-mix(in oklab,var(--sc-canvas) 18%,transparent) 82%,
+    transparent 100%)}
+:root[data-leg="4"] .plate{opacity:0}
+:root[data-leg="4"] .plate--lead{opacity:0}
+:root[data-leg="4"] .plate--day{opacity:1}
+.plate--top{inset:0 0 auto 0;height:26%;
+  background:linear-gradient(180deg,
+    color-mix(in oklab,var(--sc-canvas) 52%,transparent),transparent)}
+
+/* the engine re-anchors .sc-copy--trail to the left and full width here, so the
+   side scrim has to cover the whole column too */
+@media (max-width:760px){
+  .plate--lead{width:100%;
+    background:linear-gradient(0deg,
+      color-mix(in oklab,var(--sc-canvas) 62%,transparent) 0%,
+      color-mix(in oklab,var(--sc-canvas) 34%,transparent) 55%,
+      transparent 100%)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .timerail__handle,.route li i{transition:none}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="wordmark" href="/" aria-label="AMARI, Uptown Tulum"><b>AMARI</b><span>Uptown Tulum</span></a>
+  <nav class="topnav" aria-label="Main">
+    <a href="/villas">Villas</a>
+    <a href="/stay">Stay</a>
+    <a href="/cowork">Cowork</a>
+    <a href="/kitchen">Kitchen</a>
+    <a href="/la-veleta">La Veleta</a>
+    <a href="/es/la-veleta" class="topnav__lang">ES</a>
+  </nav>
+  <a class="enquire" href="https://amaritulum.com/contact">Walk a finished villa</a>
+</header>
+
+<ul class="route" aria-hidden="true">
+  <li data-leg="0"><span>Canopy</span><i></i></li>
+  <li data-leg="1"><span>Arrival</span><i></i></li>
+  <li data-leg="2"><span>The villa</span><i></i></li>
+  <li data-leg="3"><span>Terrace</span><i></i></li>
+  <li data-leg="4"><span>The day</span><i></i></li>
+  <li data-leg="5"><span>Nightfall</span><i></i></li>
+</ul>
+
+<div data-sc-mode="worldflight" data-sc-seam="0.16" data-sc-lerp="0.12">
+
+  <div data-sc-world>
+    <div data-sc-segment data-sc-w="1.09" data-sc-linger="0.28" data-sc-waypoint="Canopy">
+      <img class="sc-world__poster" src="/assets/p1.jpg" alt="" decoding="async">
+      <video data-sc-src="/assets/leg1.mp4" data-sc-src-mobile="/assets/leg1-m.mp4" playsinline muted preload="none"></video>
+    </div>
+    <div data-sc-segment data-sc-w="1.09" data-sc-waypoint="Arrival">
+      <img class="sc-world__poster" src="/assets/p2.jpg" alt="" decoding="async">
+      <video data-sc-src="/assets/leg2.mp4" data-sc-src-mobile="/assets/leg2-m.mp4" playsinline muted preload="none"></video>
+    </div>
+    <div data-sc-segment data-sc-w="1.09" data-sc-waypoint="The villa">
+      <img class="sc-world__poster" src="/assets/p3.jpg" alt="" decoding="async">
+      <video data-sc-src="/assets/leg3.mp4" data-sc-src-mobile="/assets/leg3-m.mp4" playsinline muted preload="none"></video>
+    </div>
+    <div data-sc-segment data-sc-w="1.09" data-sc-waypoint="Terrace">
+      <img class="sc-world__poster" src="/assets/p4.jpg" alt="" decoding="async">
+      <video data-sc-src="/assets/leg4.mp4" data-sc-src-mobile="/assets/leg4-m.mp4" playsinline muted preload="none"></video>
+    </div>
+    <div data-sc-segment data-sc-w="2.16" data-sc-linger="0.34" data-sc-waypoint="The day">
+      <img class="sc-world__poster" src="/assets/p5.jpg" alt="" decoding="async">
+      <video data-sc-src="/assets/leg5.mp4" data-sc-src-mobile="/assets/leg5-m.mp4" playsinline muted preload="none"></video>
+    </div>
+    <div data-sc-segment data-sc-w="1.09" data-sc-waypoint="Nightfall">
+      <img class="sc-world__poster" src="/assets/p6.jpg" alt="" decoding="async">
+      <video data-sc-src="/assets/leg6.mp4" data-sc-src-mobile="/assets/leg6-m.mp4" playsinline muted preload="none"></video>
+    </div>
+  </div>
+
+  <div data-sc-world-copy>
+    <div class="sc-world__scrim plate--top"></div>
+    <div class="sc-world__scrim plate"></div>
+    <div class="sc-world__scrim plate--lead"></div>
+    <div class="sc-world__scrim plate--day"></div>
+
+    <div class="sc-copy sc-copy--lead" data-sc-copy data-sc-window="hero">
+      <p class="eyebrow">Region 11 &middot; Uptown Tulum</p>
+      <h1>Forty-six villas under a canopy that was here first.</h1>
+      <p>Twelve minutes from the sand, eighteen from the airport. They built around the trees that were already standing.</p>
+    </div>
+
+    <div class="sc-copy sc-copy--trail" data-sc-copy data-sc-window="0.150 0.276">
+      <h2>Four houses to choose from. Every one of them has its own pool.</h2>
+      <p>Luna, Selva, Jaguar and Sol, by the architect Jes&uacute;s Acosta. Two to four bedrooms, <span class="mono">1,916</span> to <span class="mono">2,766</span> sq ft.</p>
+    </div>
+
+    <div class="sc-copy sc-copy--lead" data-sc-copy data-sc-window="0.306 0.418">
+      <h2>Most of Tulum is still a rendering. This one you can walk through on Tuesday.</h2>
+      <p>Phase one is finished and lived in. Phases two and three are going up on the same street. That is the part the brochures leave out.</p>
+    </div>
+
+    <div class="sc-copy sc-copy--trail" data-sc-copy data-sc-window="0.452 0.562">
+      <h2>Everything that makes a day here is inside the gate.</h2>
+      <p>Sauna, cold plunge, yoga studio, gym, and THiNk, the co-working floor with real offices. A workday, a training session and dinner without once starting the car. Fibre, solar with generator backup, and water you can drink from the tap.</p>
+    </div>
+
+    <div class="sc-copy sc-copy--lead sc-copy--peak" data-sc-copy data-sc-window="0.600 0.716">
+      <p class="peak">From here until dark, the only thing that moves is the light.</p>
+    </div>
+
+    <div class="sc-copy sc-copy--lead finale" data-sc-copy data-sc-window="finale">
+      <h2>Come and see it at the hour you would actually live in it.</h2>
+      <div class="lineup">
+        <div><b>$449,900</b><span>Luna &middot; 2 bed</span></div>
+        <div><b>$479,900</b><span>Selva &middot; 3 bed</span></div>
+        <div><b>$579,900</b><span>Jaguar &middot; 4 bed</span></div>
+        <div class="gone"><b>Sold out</b><span>Sol</span></div>
+      </div>
+      <p class="urgency">Luna, Selva and Jaguar are each down to their last villa at these prices. Sol is gone.</p>
+      <div class="acts">
+        <a class="btn" href="https://amaritulum.com/contact">Walk a finished villa</a>
+        <a class="btn ghost" href="https://amaritulum.com/uptown">See the floor plans</a>
+      </div>
+      <p class="fineprint">Ave 10 Norte &amp; Calle Palma, Uptown Tulum, Quintana Roo 77762. Twenty-four hour security. Rated <span class="mono">4.9</span> from <span class="mono">110</span> Google reviews. Starting prices as published by AMARI, September 2026; availability changes. The flight above is built from AMARI&rsquo;s own photographs of Uptown, relit and set in motion. AMARI Uptown only; no COSMOS.</p>
+    </div>
+  </div>
+
+  <div data-sc-spacer aria-hidden="true"></div>
+</div>
+
+<div class="timerail" id="timerail" aria-hidden="true">
+  <div class="timerail__head">
+    <span class="timerail__hint">Drag the light</span>
+    <span class="timerail__clock" id="clock">07:00</span>
+  </div>
+  <div class="timerail__track" id="track">
+    <div class="timerail__ticks" id="ticks"></div>
+    <div class="timerail__handle" id="handle" role="slider" tabindex="0"
+         aria-label="Hour of the day" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
+         aria-valuetext="07:00"></div>
+  </div>
+  <div class="timerail__scale">
+    <span>07:00</span><span>09:20</span><span>11:40</span><span>14:30</span>
+    <span>16:30</span><span>18:40</span><span>20:10</span>
+  </div>
+</div>
+
+<script src="/scrollcraft.js"></script>
+<script>
+(function () {
+  ScrollCraft.mount(document);
+  window.__sc = ScrollCraft.instances[ScrollCraft.instances.length - 1];
+
+  /* 7b: the spacer is sized once at mount, and innerHeight can read 0 there. */
+  function relayout() { dispatchEvent(new Event('resize')); }
+  addEventListener('load', relayout);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayout);
+
+  /* route rail: the engine publishes the leg, the page draws the gauge. */
+  var legs = [].slice.call(document.querySelectorAll('.route li'));
+  addEventListener('sc:waypoint', function (e) {
+    document.documentElement.dataset.leg = e.detail.index;
+    legs.forEach(function (el) {
+      el.setAttribute('aria-current', String(+el.dataset.leg === e.detail.index));
+    });
+  });
+  if (legs[0]) legs[0].setAttribute('aria-current', 'true');
+
+  /* ---------------------------------------------------------------------- */
+  /* THE TIME RAIL. Leg 5 is a single sun crossing the villa. The handle does */
+  /* not touch the video: it scrolls the window inside leg 5's slice of the   */
+  /* track, so the light and the page move as one thing under the hand.       */
+  /* ---------------------------------------------------------------------- */
+  var PEAK = 4;                     // zero-based index of the day leg
+  var rail   = document.getElementById('timerail');
+  var track  = document.getElementById('track');
+  var handle = document.getElementById('handle');
+  var clock  = document.getElementById('clock');
+  var ticks  = document.getElementById('ticks');
+
+  for (var i = 0; i < 29; i++) {
+    var t = document.createElement('i');
+    if (i % 4 === 0) t.className = 'major';
+    ticks.appendChild(t);
+  }
+
+  var segs = [].slice.call(document.querySelectorAll('[data-sc-segment]'));
+  function slice() {
+    var vh = innerHeight, before = 0;
+    for (var i = 0; i < PEAK; i++) before += parseFloat(segs[i].dataset.scW || 1.3);
+    var span = parseFloat(segs[PEAK].dataset.scW || 1.3);
+    return { start: before * vh, span: span * vh };
+  }
+
+  /* The clip is seven relit frames of one terrace. These are the hours they
+     were lit for, so the readout interpolates between them rather than across
+     a made-up linear day. */
+  var HOURS = [420, 560, 700, 870, 990, 1120, 1210];
+  function hhmm(f) {
+    var x = f * (HOURS.length - 1), i = Math.min(HOURS.length - 2, Math.floor(x));
+    var mins = Math.round(HOURS[i] + (HOURS[i + 1] - HOURS[i]) * (x - i));
+    var h = Math.floor(mins / 60), m = mins % 60;
+    return (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m;
+  }
+
+  var live = false, dragging = false, frac = 0;
+  function paint(f) {
+    frac = Math.min(1, Math.max(0, f));
+    handle.style.transform = 'translateX(' + (frac * track.clientWidth) + 'px)';
+    var label = hhmm(frac);
+    clock.textContent = label;
+    handle.setAttribute('aria-valuenow', Math.round(frac * 100));
+    handle.setAttribute('aria-valuetext', label);
+  }
+
+  function sync() {
+    if (dragging) return;
+    var s = slice();
+    paint((scrollY - s.start) / s.span);
+  }
+
+  addEventListener('sc:waypoint', function (e) {
+    live = e.detail.index === PEAK;
+    rail.setAttribute('data-live', live ? '1' : '0');
+    rail.setAttribute('aria-hidden', live ? 'false' : 'true');
+    sync();
+  });
+  addEventListener('scroll', sync, { passive: true });
+  addEventListener('resize', sync);
+
+  function seek(clientX) {
+    var r = track.getBoundingClientRect();
+    var f = Math.min(1, Math.max(0, (clientX - r.left) / r.width));
+    var s = slice();
+    paint(f);
+    scrollTo(0, s.start + f * s.span);
+  }
+
+  track.addEventListener('pointerdown', function (e) {
+    if (!live) return;
+    dragging = true;
+    track.setPointerCapture(e.pointerId);
+    seek(e.clientX);
+    e.preventDefault();
+  });
+  track.addEventListener('pointermove', function (e) { if (dragging) seek(e.clientX); });
+  function release(e) {
+    if (!dragging) return;
+    dragging = false;
+    try { track.releasePointerCapture(e.pointerId); } catch (err) {}
+  }
+  track.addEventListener('pointerup', release);
+  track.addEventListener('pointercancel', release);
+
+  handle.addEventListener('keydown', function (e) {
+    var step = e.key === 'PageDown' || e.key === 'PageUp' ? 0.1 : 0.02, d = 0;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowUp' || e.key === 'PageUp') d = step;
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown' || e.key === 'PageDown') d = -step;
+    else if (e.key === 'Home') d = -1;
+    else if (e.key === 'End') d = 1;
+    else return;
+    e.preventDefault();
+    var s = slice(), f = Math.min(1, Math.max(0, frac + d));
+    paint(f);
+    scrollTo(0, s.start + f * s.span);
+  });
+
+  sync();
+})();
+</script>
+</body>
+</html>
