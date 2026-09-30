@@ -8,23 +8,9 @@ const OUT = 'public';
 const SKIP = new Set(['.git', '.github', 'node_modules', 'scripts', '_docs', OUT, '.vercel',
   'README.md', 'package.json', 'vercel.json', '.gitignore', '.vercelignore']);
 
-// slot -> Pexels photo id. Swap an id here to change a photo.
-const PHOTOS = {
-  'meal-plan':   30635720, // meal prep containers, rice and vegetables
-  'feast':       4929705,  // containers of prepared food
-  'bowl':        105588,   // chicken, rice and broccoli
-  'motulenos':   5840312,  // breakfast tacos with eggs
-  'chaya-juice': 17890560, // green smoothie
-  'tikin-xic':   15913464, // salmon with vegetables
-  'poc-chuc':    29101362, // grilled steak with vegetables
-  'cochinita':   4519057,  // plates of healthy food
-  'aguachile':   29177449, // shrimp and avocado salad
-  'drinks':      6707445,  // fresh smoothie
-  'cafe-pan':    13787645, // matcha
-  'terrace':     7299855,  // weighing ingredients on a scale
-  'eggs':        19559056, // healthy egg breakfast
-  'yogurt':      10421049, // yogurt bowl with berries
-};
+// slot -> Pexels photo id lives in scripts/photos.json. Photos committed to
+// img/kitchen/ by the GitHub workflow are used as-is; any missing one is fetched.
+const PHOTOS = JSON.parse(fs.readFileSync('scripts/photos.json', 'utf8'));
 
 function copy(src, dst) {
   for (const e of fs.readdirSync(src, { withFileTypes: true })) {
@@ -43,6 +29,7 @@ const dir = path.join(OUT, 'img', 'kitchen');
 fs.mkdirSync(dir, { recursive: true });
 const failed = [];
 await Promise.all(Object.entries(PHOTOS).map(async ([slot, id]) => {
+  if (fs.existsSync(path.join(dir, slot + '.jpg'))) { console.log(`repo ${slot}`); return; }
   const url = `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=1400&h=1050&fit=crop`;
   try {
     const r = await fetch(url, { redirect: 'follow' });
