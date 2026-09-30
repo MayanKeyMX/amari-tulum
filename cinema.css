@@ -258,7 +258,7 @@ table.data td.n{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(-
   font-variant-numeric:tabular-nums}
 .dayline__ctl{max-width:62rem}
 .dayline__ctl input{width:100%;accent-color:var(--khaki);margin:.4rem 0 .2rem;height:1.6rem;cursor:grab}
-.dayline__ticks{display:grid;grid-template-columns:repeat(8,1fr);gap:.2rem}
+.dayline__ticks{display:grid;grid-template-columns:repeat(9,1fr);gap:.2rem}
 .dayline__tick{background:none;border:0;border-top:2px solid var(--sc-hairline);color:var(--sc-ink-soft);
   padding:.5rem 0 0;text-align:left;cursor:pointer;font:inherit}
 .dayline__tick b{display:block;font-family:var(--eyebrow);font-size:.56rem;letter-spacing:.12em}
