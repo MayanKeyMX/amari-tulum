@@ -8,12 +8,32 @@
   "redirects": [
     {
       "source": "/cidro",
-      "destination": "/kitchen",
+      "destination": "/food",
       "permanent": true
     },
     {
       "source": "/es/cidro",
-      "destination": "/es/cocina",
+      "destination": "/es/comida",
+      "permanent": true
+    },
+    {
+      "source": "/kitchen",
+      "destination": "/food",
+      "permanent": true
+    },
+    {
+      "source": "/es/cocina",
+      "destination": "/es/comida",
+      "permanent": true
+    },
+    {
+      "source": "/cowork",
+      "destination": "/work",
+      "permanent": true
+    },
+    {
+      "source": "/es/cowork",
+      "destination": "/es/trabajo",
       "permanent": true
     }
   ],

@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const OUT = 'public';
-const SKIP = new Set(['.git', '.github', 'node_modules', 'scripts', '_docs', OUT, '.vercel',
+const SKIP = new Set(['.git', 'api', '.github', 'node_modules', 'scripts', '_docs', OUT, '.vercel',
   'README.md', 'package.json', 'vercel.json', '.gitignore', '.vercelignore']);
 
 // slot -> Pexels photo id lives in scripts/photos.json. Photos committed to

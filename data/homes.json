@@ -1,0 +1,14 @@
+{
+  "source": "draft",
+  "note": "Draft listings by villa design until the Boom PMS feed is connected (see api/homes.js).",
+  "homes": [
+    { "id": "luna", "name": "Villa Luna", "model": "Luna", "bedrooms": 3, "bathrooms": 3, "guests": 6, "pool": true,
+      "image": "img/Luna_4870.jpg", "summary": { "en": "Two levels, a semi-open patio between the bedrooms and a plunge pool.", "es": "Dos niveles, patio semiabierto entre las rec&aacute;maras y alberca." } },
+    { "id": "selva", "name": "Villa Selva", "model": "Selva", "bedrooms": 3, "bathrooms": 3.5, "guests": 6, "pool": true,
+      "image": "img/Selva_5949.jpg", "summary": { "en": "Three levels, a lock-off suite and a rooftop terrace over the trees.", "es": "Tres niveles, suite independiente y terraza en la azotea sobre los &aacute;rboles." } },
+    { "id": "jaguar", "name": "Villa Jaguar", "model": "Jaguar", "bedrooms": 4, "bathrooms": 4.5, "guests": 8, "pool": true,
+      "image": "img/Jaguar_3339.jpg", "summary": { "en": "The largest design: two pools, two terraces and an outdoor tub.", "es": "El dise&ntilde;o m&aacute;s grande: dos albercas, dos terrazas y tina al aire libre." } },
+    { "id": "sol", "name": "Villa Sol", "model": "Sol", "bedrooms": 2, "bathrooms": 2.5, "guests": 4, "pool": true,
+      "image": "img/Sol_4824.jpg", "summary": { "en": "A wood pergola over the garden terrace and a full chef's kitchen.", "es": "P&eacute;rgola de madera sobre la terraza y cocina completa." } }
+  ]
+}

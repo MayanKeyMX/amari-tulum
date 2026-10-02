@@ -13,7 +13,17 @@
 <body>
 <header class="top">
   <a class="wordmark" href="/" aria-label="AMARI, Uptown Tulum"><b>AMARI</b><span>Uptown Tulum</span></a>
+  <nav class="topnav" aria-label="Main"><a href="/stay" class="is-key">Stay</a><a href="/work" class="is-key">Work</a><a href="/train" class="is-key">Train</a><a href="/food" class="is-key">Food</a><span class="topnav__sep" aria-hidden="true"></span><a href="/villas">Own</a><a href="/la-veleta">La Veleta</a><a href="/es" class="topnav__lang" lang="es">ES</a></nav>
+  <a class="enquire" href="/stay#homes">Book a stay</a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu"><i aria-hidden="true"></i>Menu</button>
 </header>
+<div class="menu" id="site-menu" hidden>
+  <div class="menu__head"><a class="wordmark" href="/"><b>AMARI</b><span>Uptown Tulum</span></a><button class="menu__close" type="button">Close &times;</button></div>
+  <ul class="menu__main"><li><a href="/stay"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span><b>Stay</b><small>Homes to rent at AMARI</small></span><em>&rarr;</em></a></li><li><a href="/work"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="1"/><path d="M2 19h20"/></svg><span><b>Work</b><small>Desks, offices and day passes</small></span><em>&rarr;</em></a></li><li><a href="/train"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7v10M3 9v6M18 7v10M21 9v6M6 12h12"/></svg><span><b>Train</b><small>Gym and personal training</small></span><em>&rarr;</em></a></li><li><a href="/food"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11h18a9 9 0 0 1-18 0z"/><path d="M8 7c0-1.5 1-2 1-3M12 7c0-1.5 1-2 1-3M16 7c0-1.5 1-2 1-3"/></svg><span><b>Food</b><small>Macro meal prep and the Fuel Bar</small></span><em>&rarr;</em></a></li></ul>
+  <div class="menu__more"><a href="/">Home</a><a href="/villas">Own a villa</a><a href="/la-veleta">La Veleta</a><a href="/es" lang="es">Español</a></div>
+  <a class="btn" href="https://wa.me/529842051612">WhatsApp us</a>
+</div>
+<nav class="tabbar" aria-label="Main"><a href="/stay"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Stay</span></a><a href="/work"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="1"/><path d="M2 19h20"/></svg><span>Work</span></a><a href="/train"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7v10M3 9v6M18 7v10M21 9v6M6 12h12"/></svg><span>Train</span></a><a href="/food"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11h18a9 9 0 0 1-18 0z"/><path d="M8 7c0-1.5 1-2 1-3M12 7c0-1.5 1-2 1-3M16 7c0-1.5 1-2 1-3"/></svg><span>Food</span></a></nav>
 <main class="band" style="min-height:100svh">
   <img class="band__bg" src="/img/aerial-night.jpg" alt="" aria-hidden="true">
   <div class="band__in">
@@ -22,10 +32,11 @@
     <div class="close__acts">
       <a class="btn" href="/">Home</a>
       <a class="btn btn--ghost" href="/villas">Villas</a>
-      <a class="btn btn--ghost" href="/kitchen">Kitchen</a>
+      <a class="btn btn--ghost" href="/food">Kitchen</a>
       <a class="btn btn--ghost" href="/es">Espa&ntilde;ol</a>
     </div>
   </div>
 </main>
+<script src="/nav.js" defer></script>
 </body>
 </html>
