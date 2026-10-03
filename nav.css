@@ -1,0 +1,55 @@
+/* AMARI site menu, loaded on every page (including the home page, which does
+   not load cinema.css). Tokens fall back to the AMARI palette when a page does
+   not define them. */
+:root{--nav-canvas:var(--sc-canvas,#12170C);--nav-cream:var(--cream,#F1E3C9);--nav-accent:var(--sc-accent,#BCAD8F);
+  --nav-soft:var(--sc-ink-soft,#C7CFB4);--nav-line:var(--sc-hairline,rgba(241,227,201,.14));
+  --nav-display:var(--sc-font-display,"Fraunces",Georgia,serif);--nav-label:var(--eyebrow,"Montserrat",sans-serif);
+  --nav-gutter:var(--sc-gutter,clamp(1.25rem,4vw,4.5rem));--nav-ink:var(--sc-accent-ink,#1A2010)}
+@media (max-width:980px){.topnav{display:none}}
+.top .menu-btn,.top .enquire{pointer-events:auto}
+/* ============================================================ site menu ==
+   One header on every page. Desktop: the four sections in the top bar.
+   Phone: a bottom tab bar for the four sections plus a full-screen menu. */
+.topnav__sep{width:1px;height:14px;background:color-mix(in oklab,var(--nav-cream) 30%,transparent)}
+.topnav a.is-key{color:var(--nav-cream)}
+.menu-btn{pointer-events:auto;display:none;align-items:center;gap:.55rem;cursor:pointer;
+  font-family:var(--nav-label);font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--nav-cream);background:color-mix(in oklab,var(--nav-canvas) 40%,transparent);backdrop-filter:blur(6px);
+  border:1px solid color-mix(in oklab,var(--nav-cream) 40%,transparent);padding:.7rem .95rem}
+.menu-btn i{display:block;width:16px;height:1.5px;background:currentColor;box-shadow:0 5px 0 currentColor,0 -5px 0 currentColor}
+@media (max-width:980px){.menu-btn{display:inline-flex}.top .enquire{display:none}}
+.menu{position:fixed;inset:0;z-index:120;background:color-mix(in oklab,var(--nav-canvas) 96%,transparent);
+  backdrop-filter:blur(10px);overflow-y:auto;padding:clamp(1rem,4vw,2rem) var(--nav-gutter) 6rem;display:flex;flex-direction:column}
+.menu[hidden]{display:none}
+.menu__head{display:flex;justify-content:space-between;align-items:center;margin-bottom:clamp(1.2rem,4vh,2.4rem)}
+.menu__close{background:none;border:1px solid color-mix(in oklab,var(--nav-cream) 40%,transparent);color:var(--nav-cream);
+  font-family:var(--nav-label);font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:.7rem .95rem;cursor:pointer}
+.menu__main{list-style:none;margin:0;padding:0;border-top:1px solid var(--nav-line)}
+.menu__main a{display:grid;grid-template-columns:2.6rem 1fr auto;align-items:center;gap:.9rem;text-decoration:none;
+  padding:1.05rem 0;border-bottom:1px solid var(--nav-line)}
+.menu__main svg{width:26px;height:26px;stroke:var(--nav-accent);fill:none;stroke-width:1.5}
+.menu__main b{font-family:var(--nav-display);font-weight:300;font-size:clamp(2rem,8vw,3.2rem);line-height:1}
+.menu__main small{grid-column:2;font-size:.85rem;color:var(--nav-soft);margin-top:.35rem}
+.menu__main span{display:flex;flex-direction:column}
+.menu__main em{font-style:normal;font-family:var(--nav-label);font-size:.6rem;letter-spacing:.16em;color:var(--nav-accent)}
+.menu__main a[aria-current="page"] b{color:var(--nav-accent)}
+.menu__more{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;margin:1.6rem 0;font-family:var(--nav-label);font-size:.66rem;
+  font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+.menu__more a{text-decoration:none;color:var(--nav-soft);padding:.4rem 0}
+.menu__more a:hover{color:var(--nav-cream)}
+.menu .btn{align-self:flex-start}
+html.menu-open,html.menu-open body{overflow:hidden}
+.tabbar{display:none}
+@media (max-width:760px){
+  .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:90;display:grid;grid-template-columns:repeat(4,1fr);
+    background:color-mix(in oklab,var(--nav-canvas) 88%,transparent);backdrop-filter:blur(12px);
+    border-top:1px solid var(--nav-line);padding:.35rem .4rem calc(.35rem + env(safe-area-inset-bottom))}
+  .tabbar a{display:flex;flex-direction:column;align-items:center;gap:.25rem;padding:.4rem 0;text-decoration:none;
+    font-family:var(--nav-label);font-size:.56rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:color-mix(in oklab,var(--nav-cream) 72%,transparent)}
+  .tabbar svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.6}
+  .tabbar a[aria-current="page"]{color:var(--nav-accent)}
+  body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+}
+@media (max-width:420px){.top{gap:.5rem}}
+

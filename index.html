@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AMARI Uptown Tulum</title>
-<meta name="description" content="Forty-six private villas under the jungle canopy in Uptown Tulum. Fly the site from the canopy to the door, and hold the light where you want it.">
+<meta name="description" content="A community in Uptown Tulum: stay in a private villa, work from the cowork, train in the gym and eat meals weighed to your macros, all inside one gate.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%233B4921'/%3E%3Cpath d='M6 24 16 8l10 16h-3.6L16 13.2 9.6 24Z' fill='%23F1E3C9'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,7 +58,7 @@ a{color:inherit}
 .topnav a:hover{color:var(--cream)}
 .topnav__lang{border:1px solid color-mix(in oklab,var(--cream) 36%,transparent);
   padding:.28rem .5rem}
-@media (max-width:900px){.topnav{display:none}}
+@media (max-width:980px){.topnav{display:none}}
 @media (max-width:560px){.wordmark span{display:none}}
 .enquire{font-family:var(--eyebrow);font-size:.62rem;font-weight:600;letter-spacing:.18em;
   text-transform:uppercase;text-decoration:none;padding:.72rem 1.15rem;
@@ -224,21 +224,24 @@ h2{font-size:var(--sc-t-2xl);max-width:17ch}
 @media (prefers-reduced-motion:reduce){
   .timerail__handle,.route li i{transition:none}
 }
+.lineup a.pillar{text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:.35rem}
+.lineup a.pillar:hover b{color:var(--sc-accent)}
 </style>
+<link rel="stylesheet" href="/nav.css">
 </head>
 <body>
 
 <header class="top">
   <a class="wordmark" href="/" aria-label="AMARI, Uptown Tulum"><b>AMARI</b><span>Uptown Tulum</span></a>
-  <nav class="topnav" aria-label="Main"><a href="/stay" class="is-key">Stay</a><a href="/work" class="is-key">Work</a><a href="/train" class="is-key">Train</a><a href="/food" class="is-key">Food</a><span class="topnav__sep" aria-hidden="true"></span><a href="/villas">Own</a><a href="/la-veleta">La Veleta</a><a href="/es" class="topnav__lang" lang="es">ES</a></nav>
-  <a class="enquire" href="https://amaritulum.com/contact">Walk a finished villa</a>
+  <nav class="topnav" aria-label="Main"><a href="/stay" class="is-key">Stay</a><a href="/work" class="is-key">Work</a><a href="/train" class="is-key">Train</a><a href="/food" class="is-key">Food</a><span class="topnav__sep" aria-hidden="true"></span><a href="/la-veleta">La Veleta</a><a href="/es" class="topnav__lang" lang="es">ES</a></nav>
+  <a class="enquire" href="https://wa.me/529842051612?text=Hi%2C%20I%20would%20like%20to%20join%20the%20AMARI%20community.">Join the community</a>
   <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu"><i aria-hidden="true"></i>Menu</button>
 </header>
 <div class="menu" id="site-menu" hidden>
   <div class="menu__head"><a class="wordmark" href="/"><b>AMARI</b><span>Uptown Tulum</span></a><button class="menu__close" type="button">Close &times;</button></div>
   <ul class="menu__main"><li><a href="/stay"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span><b>Stay</b><small>Homes to rent at AMARI</small></span><em>&rarr;</em></a></li><li><a href="/work"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="1"/><path d="M2 19h20"/></svg><span><b>Work</b><small>Desks, offices and day passes</small></span><em>&rarr;</em></a></li><li><a href="/train"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7v10M3 9v6M18 7v10M21 9v6M6 12h12"/></svg><span><b>Train</b><small>Gym and personal training</small></span><em>&rarr;</em></a></li><li><a href="/food"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11h18a9 9 0 0 1-18 0z"/><path d="M8 7c0-1.5 1-2 1-3M12 7c0-1.5 1-2 1-3M16 7c0-1.5 1-2 1-3"/></svg><span><b>Food</b><small>Macro meal prep and the Fuel Bar</small></span><em>&rarr;</em></a></li></ul>
-  <div class="menu__more"><a href="/">Home</a><a href="/villas">Own a villa</a><a href="/la-veleta">La Veleta</a><a href="/es" lang="es">Español</a></div>
-  <a class="btn" href="https://wa.me/529842051612">WhatsApp us</a>
+  <div class="menu__more"><a href="/">Home</a><a href="/la-veleta">La Veleta</a><a href="/es" lang="es">Español</a></div>
+  <a class="btn" href="https://wa.me/529842051612?text=Hi%2C%20I%20would%20like%20to%20join%20the%20AMARI%20community.">Join the community</a>
 </div>
 <nav class="tabbar" aria-label="Main"><a href="/stay"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Stay</span></a><a href="/work"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="1"/><path d="M2 19h20"/></svg><span>Work</span></a><a href="/train"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7v10M3 9v6M18 7v10M21 9v6M6 12h12"/></svg><span>Train</span></a><a href="/food"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11h18a9 9 0 0 1-18 0z"/><path d="M8 7c0-1.5 1-2 1-3M12 7c0-1.5 1-2 1-3M16 7c0-1.5 1-2 1-3"/></svg><span>Food</span></a></nav>
 
@@ -288,23 +291,23 @@ h2{font-size:var(--sc-t-2xl);max-width:17ch}
 
     <div class="sc-copy sc-copy--lead" data-sc-copy data-sc-window="hero">
       <p class="eyebrow">Region 11 &middot; Uptown Tulum</p>
-      <h1>Forty-six villas under a canopy that was here first.</h1>
-      <p>Twelve minutes from the sand, eighteen from the airport. They built around the trees that were already standing.</p>
+      <h1>A community under a canopy that was here first.</h1>
+      <p>Live, work, train and eat well alongside people building the same kind of life. Twelve minutes from the sand, eighteen from the airport.</p>
     </div>
 
     <div class="sc-copy sc-copy--trail" data-sc-copy data-sc-window="0.150 0.276">
-      <h2>Four houses to choose from. Every one of them has its own pool.</h2>
-      <p>Luna, Selva, Jaguar and Sol, by the architect Jes&uacute;s Acosta. Two to four bedrooms, <span class="mono">1,916</span> to <span class="mono">2,766</span> sq ft.</p>
+      <h2>Stay a week, a season, or longer. Every home has its own pool.</h2>
+      <p>Private villas inside the gate, designed by Jes&uacute;s Acosta around the trees that were already standing.</p>
     </div>
 
     <div class="sc-copy sc-copy--lead" data-sc-copy data-sc-window="0.306 0.418">
-      <h2>Most of Tulum is still a rendering. This one you can walk through on Tuesday.</h2>
-      <p>Phase one is finished and lived in. Phases two and three are going up on the same street. That is the part the brochures leave out.</p>
+      <h2>Most of Tulum is a place you visit. This is a place you belong to.</h2>
+      <p>Phase one is finished and lived in. Neighbours train together at seven, work side by side at nine, and share a long table on Fridays.</p>
     </div>
 
     <div class="sc-copy sc-copy--trail" data-sc-copy data-sc-window="0.452 0.562">
       <h2>Everything that makes a day here is inside the gate.</h2>
-      <p>Sauna, cold plunge, yoga studio, gym, and THiNk, the co-working floor with real offices. A workday, a training session and dinner without once starting the car. Fibre, solar with generator backup, and water you can drink from the tap.</p>
+      <p>Stay, work, train and eat well without once starting the car: villas with private pools, a cowork with real offices, a gym for high impact training, and a kitchen that weighs your meals to your macros.</p>
     </div>
 
     <div class="sc-copy sc-copy--lead sc-copy--peak" data-sc-copy data-sc-window="0.600 0.716">
@@ -312,19 +315,19 @@ h2{font-size:var(--sc-t-2xl);max-width:17ch}
     </div>
 
     <div class="sc-copy sc-copy--lead finale" data-sc-copy data-sc-window="finale">
-      <h2>Come and see it at the hour you would actually live in it.</h2>
+      <h2>Come for a week. Stay for the people.</h2>
       <div class="lineup">
-        <div><b>$449,900</b><span>Luna &middot; 2 bed</span></div>
-        <div><b>$479,900</b><span>Selva &middot; 3 bed</span></div>
-        <div><b>$579,900</b><span>Jaguar &middot; 4 bed</span></div>
-        <div class="gone"><b>Sold out</b><span>Sol</span></div>
+        <a class="pillar" href="/stay"><b>Stay</b><span>Homes to rent</span></a>
+        <a class="pillar" href="/work"><b>Work</b><span>Desks and offices</span></a>
+        <a class="pillar" href="/train"><b>Train</b><span>Gym and coaching</span></a>
+        <a class="pillar" href="/food"><b>Food</b><span>Weighed to your macros</span></a>
       </div>
-      <p class="urgency">Luna, Selva and Jaguar are each down to their last villa at these prices. Sol is gone.</p>
+      <p class="urgency">Members get the Saturday run, the founders&rsquo; table and the weekly drop on WhatsApp.</p>
       <div class="acts">
-        <a class="btn" href="https://amaritulum.com/contact">Walk a finished villa</a>
-        <a class="btn ghost" href="https://amaritulum.com/uptown">See the floor plans</a>
+        <a class="btn" href="https://wa.me/529842051612?text=Hi%2C%20I%20would%20like%20to%20join%20the%20AMARI%20community.">Join the community</a>
+        <a class="btn ghost" href="/stay#homes">Book a stay</a>
       </div>
-      <p class="fineprint">Ave 10 Norte &amp; Calle Palma, Uptown Tulum, Quintana Roo 77762. Twenty-four hour security. Rated <span class="mono">4.9</span> from <span class="mono">110</span> Google reviews. Starting prices as published by AMARI, September 2026; availability changes. The flight above is built from AMARI&rsquo;s own photographs of Uptown, relit and set in motion. AMARI Uptown only; no COSMOS.</p>
+      <p class="fineprint">Ave 10 Norte &amp; Calle Palma, Uptown Tulum, Quintana Roo 77762. Twenty-four hour security. Rated <span class="mono">4.9</span> from <span class="mono">110</span> Google reviews. The flight above is built from AMARI&rsquo;s own photographs of Uptown, relit and set in motion.</p>
     </div>
   </div>
 
