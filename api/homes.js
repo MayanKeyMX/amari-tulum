@@ -23,7 +23,7 @@ export default async function handler(req, res) {
     const r = await fetch(`${BOOM}/api/booking/listings?${p}`, {
       headers: { Accept: 'application/json', 'User-Agent': 'Mozilla/5.0 (AMARI site; +https://amaritulum.com)' },
     });
-    if (!r.ok) throw new Error('Boom HTTP ' + r.status);
+    if (!r.ok) { const t = await r.text(); const e = new Error('Boom HTTP ' + r.status); e.detail = { status: r.status, server: r.headers.get('server'), cf: r.headers.get('cf-mitigated'), body: t.slice(0, 160) }; throw e; }
     const data = await r.json();
     const link = new URLSearchParams({ check_in: ci, check_out: co, adults: String(adults || 1), children: String(children), lang });
     const homes = (data.listings || [])
@@ -44,6 +44,6 @@ export default async function handler(req, res) {
     });
   } catch (e) {
     console.error('homes: Boom fetch failed', e.message);
-    return res.status(502).json({ error: 'boom_unavailable' });
+    return res.status(502).json({ error: 'boom_unavailable', message: e.message, detail: e.detail || null });
   }
 }
