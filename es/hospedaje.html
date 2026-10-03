@@ -26,7 +26,7 @@
 <header class="top">
   <a class="wordmark" href="/es" aria-label="AMARI, Uptown Tulum"><b>AMARI</b><span>Uptown Tulum</span></a>
   <nav class="topnav" aria-label="Principal"><a href="/es/hospedaje" class="is-key" aria-current="page">Hospedaje</a><a href="/es/trabajo" class="is-key">Trabajo</a><a href="/es/entrena" class="is-key">Entrena</a><a href="/es/comida" class="is-key">Comida</a><span class="topnav__sep" aria-hidden="true"></span><a href="/es/la-veleta">La Veleta</a><a href="/stay" class="topnav__lang" lang="en">EN</a></nav>
-  <a class="enquire" href="https://wa.me/15128096438">Ver fechas</a>
+  <a class="enquire" href="#homes">Buscar casas</a>
   <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu"><i aria-hidden="true"></i>Men&uacute;</button>
 </header>
 <div class="menu" id="site-menu" hidden>
@@ -39,6 +39,28 @@
 
 <main>
 
+  <section class="sc-section" id="homes" data-sc-act="flow" style="padding-top:clamp(6.5rem,14vh,9rem)" data-sc-drift="#181F10">
+    <div class="sc-wrap">
+      <div class="sc-stack" style="max-width:52rem">
+        <p class="eyebrow">Casas en renta</p>
+        <h1 class="sc-display sc-display--lg">Todas las casas de AMARI, un solo lugar para reservar.</h1>
+        <p class="sc-body">Villas privadas con alberca propia, dentro de AMARI en La Veleta. Elige tus fechas, ve qu&eacute; est&aacute; libre ahora y reserva directo.</p>
+      </div>
+      <form class="stay-search" id="stay-search" role="search" aria-label="Buscar casas">
+        <label class="ss-date"><span>Llegada</span><input type="date" name="check_in"></label>
+        <label class="ss-date"><span>Salida</span><input type="date" name="check_out"></label>
+        <label class="ss-num"><span>Adultos</span><select name="adults"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select></label>
+        <label class="ss-num"><span>Ni&ntilde;os</span><select name="children"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select></label>
+        <button class="btn" type="submit">Buscar</button>
+      </form>
+      <p class="homes-status" id="homes-status" aria-live="polite"></p>
+      <div class="homes-filter" id="homes-filter"></div>
+      <div class="homes-grid" id="homes-grid"><div class="homes-skel"></div><div class="homes-skel"></div><div class="homes-skel"></div></div>
+    </div>
+  </section>
+
+
+
   <section data-sc-act="scrub" data-sc-span="2.8" data-sc-dwell="0.34" data-sc-drift="#12170C">
     <div data-sc-stage>
       <img class="sc-stage__poster" src="/assets/p5.jpg" alt="" decoding="async">
@@ -46,22 +68,9 @@
       <div class="sc-scrim sc-scrim--lead" aria-hidden="true"></div>
       <div class="sc-copy sc-copy--lead" data-sc-cue="0 0.84 0">
         <p class="eyebrow">La Veleta &middot; Tulum</p>
-        <h1 class="sc-display sc-display--lg" data-sc-kinetic="lines">Una villa entera, alberca privada y cero sargazo.</h1>
+        <h2 class="sc-display sc-display--lg" data-sc-kinetic="lines">Una villa entera, alberca privada y cero sargazo.</h2>
         <p class="sc-body">Estamos tierra adentro. De abril a octubre los hoteles de playa pelean con el sargazo y nosotros no.</p>
       </div>
-    </div>
-  </section>
-
-  <section class="sc-section" id="homes" data-sc-act="flow" data-sc-drift="#181F10">
-    <div class="sc-wrap">
-      <div class="sc-stack" style="max-width:52rem">
-        <p class="eyebrow">Casas en renta</p>
-        <h2 class="sc-display sc-display--lg">Todas las casas de AMARI, un solo lugar para reservar.</h2>
-        <p class="sc-body">Villas privadas con alberca propia, dentro de AMARI en La Veleta. Elige una casa y consulta tus fechas.</p>
-      </div>
-      <div class="homes-filter" id="homes-filter"></div>
-      <div class="homes-grid" id="homes-grid"><div class="homes-skel"></div><div class="homes-skel"></div><div class="homes-skel"></div></div>
-      <p class="homes-status" id="homes-status"></p>
     </div>
   </section>
 

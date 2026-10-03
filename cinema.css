@@ -349,3 +349,19 @@ table.data td.n{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(-
 .pair a:hover{border-color:var(--sc-accent)}
 .pair b{font-family:var(--sc-font-display);font-weight:300;font-size:1.8rem}
 .pair small{color:var(--sc-ink-soft);font-size:.88rem}
+
+/* ---------------------------------------------------------- stay search -- */
+.stay-search{display:grid;grid-template-columns:1fr 1fr .6fr .6fr auto;gap:.6rem;align-items:end;margin-top:1.8rem;
+  padding:clamp(.8rem,1.6vw,1.1rem);border:1px solid var(--sc-hairline);background:color-mix(in oklab,var(--sc-surface) 75%,transparent)}
+.stay-search label{display:flex;flex-direction:column;gap:.35rem;min-width:0}
+.stay-search span{font-family:var(--eyebrow);font-size:.56rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--sc-ink-soft)}
+.stay-search input,.stay-search select{width:100%;min-width:0;background:var(--sc-canvas);color:var(--cream);border:1px solid color-mix(in oklab,var(--cream) 26%,transparent);
+  font:inherit;font-size:1rem;padding:.75rem .7rem;border-radius:0;color-scheme:dark;-webkit-appearance:none;appearance:none}
+.stay-search select{background-image:linear-gradient(45deg,transparent 50%,var(--cream) 50%),linear-gradient(135deg,var(--cream) 50%,transparent 50%);
+  background-position:calc(100% - 16px) 55%,calc(100% - 11px) 55%;background-size:5px 5px;background-repeat:no-repeat;padding-right:1.8rem}
+.stay-search input:focus,.stay-search select:focus{outline:2px solid var(--sc-accent);outline-offset:0}
+.stay-search .btn{padding:.95rem 1.6rem;cursor:pointer;height:100%;min-height:3rem}
+@media (max-width:820px){.stay-search{grid-template-columns:1fr 1fr}.stay-search .btn{grid-column:1/-1}}
+.homes-status{margin:1rem 0 0}
+.homes-status .link{margin-left:.6rem;display:inline-block}
+.homes-grid[aria-busy="true"]{opacity:.45;transition:opacity .2s}

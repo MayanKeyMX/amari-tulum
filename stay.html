@@ -25,7 +25,7 @@
 <header class="top">
   <a class="wordmark" href="/" aria-label="AMARI, Uptown Tulum"><b>AMARI</b><span>Uptown Tulum</span></a>
   <nav class="topnav" aria-label="Main"><a href="/stay" class="is-key" aria-current="page">Stay</a><a href="/work" class="is-key">Work</a><a href="/train" class="is-key">Train</a><a href="/food" class="is-key">Food</a><span class="topnav__sep" aria-hidden="true"></span><a href="/la-veleta">La Veleta</a><a href="/es/hospedaje" class="topnav__lang" lang="es">ES</a></nav>
-  <a class="enquire" href="https://wa.me/15128096438">Check dates</a>
+  <a class="enquire" href="#homes">Search homes</a>
   <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu"><i aria-hidden="true"></i>Menu</button>
 </header>
 <div class="menu" id="site-menu" hidden>
@@ -38,6 +38,29 @@
 
 <main>
 
+  <!-- HOMES: live from Boom PMS via /api/homes, draft list until connected. -->
+  <section class="sc-section" id="homes" data-sc-act="flow" style="padding-top:clamp(6.5rem,14vh,9rem)" data-sc-drift="#181F10">
+    <div class="sc-wrap">
+      <div class="sc-stack" style="max-width:52rem">
+        <p class="eyebrow">Homes to rent</p>
+        <h1 class="sc-display sc-display--lg">Every AMARI home, one place to book.</h1>
+        <p class="sc-body">Private villas with their own pools, inside the gate in La Veleta. Pick your dates and see what is free right now, then book straight through.</p>
+      </div>
+      <form class="stay-search" id="stay-search" role="search" aria-label="Search homes">
+        <label class="ss-date"><span>Check-in</span><input type="date" name="check_in"></label>
+        <label class="ss-date"><span>Check-out</span><input type="date" name="check_out"></label>
+        <label class="ss-num"><span>Adults</span><select name="adults"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select></label>
+        <label class="ss-num"><span>Children</span><select name="children"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select></label>
+        <button class="btn" type="submit">Search</button>
+      </form>
+      <p class="homes-status" id="homes-status" aria-live="polite"></p>
+      <div class="homes-filter" id="homes-filter"></div>
+      <div class="homes-grid" id="homes-grid"><div class="homes-skel"></div><div class="homes-skel"></div><div class="homes-skel"></div></div>
+    </div>
+  </section>
+
+
+
   <!-- 1 · ARRIVAL: scrub. The day crossing a real terrace. -->
   <section data-sc-act="scrub" data-sc-span="2.8" data-sc-dwell="0.34" data-sc-drift="#12170C">
     <div data-sc-stage>
@@ -46,23 +69,9 @@
       <div class="sc-scrim sc-scrim--lead" aria-hidden="true"></div>
       <div class="sc-copy sc-copy--lead" data-sc-cue="0 0.84 0">
         <p class="eyebrow">La Veleta &middot; Uptown Tulum</p>
-        <h1 class="sc-display sc-display--lg" data-sc-kinetic="lines">A whole villa, a private pool, and no sargassum in your holiday.</h1>
+        <h2 class="sc-display sc-display--lg" data-sc-kinetic="lines">A whole villa, a private pool, and no sargassum in your holiday.</h2>
         <p class="sc-body">We are inland. From April to October the beach hotels are fighting seaweed and we are not.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- HOMES: live from Boom PMS via /api/homes, draft list until connected. -->
-  <section class="sc-section" id="homes" data-sc-act="flow" data-sc-drift="#181F10">
-    <div class="sc-wrap">
-      <div class="sc-stack" style="max-width:52rem">
-        <p class="eyebrow">Homes to rent</p>
-        <h2 class="sc-display sc-display--lg">Every AMARI home, one place to book.</h2>
-        <p class="sc-body">Private villas with their own pools, inside the gate in La Veleta. Pick a home and check your dates.</p>
-      </div>
-      <div class="homes-filter" id="homes-filter"></div>
-      <div class="homes-grid" id="homes-grid"><div class="homes-skel"></div><div class="homes-skel"></div><div class="homes-skel"></div></div>
-      <p class="homes-status" id="homes-status"></p>
     </div>
   </section>
 
