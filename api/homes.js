@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   if (adults || children) p.set('children', String(children));
   try {
     const r = await fetch(`${BOOM}/api/booking/listings?${p}`, {
-      headers: { Accept: 'application/json', 'User-Agent': 'Mozilla/5.0 (AMARI site; +https://amaritulum.com)' },
+      headers: { Accept: 'application/json', Referer: `${BOOM}/listings`, Origin: BOOM, 'User-Agent': 'Mozilla/5.0 (AMARI site; +https://amaritulum.com)' },
     });
     if (!r.ok) { const t = await r.text(); const e = new Error('Boom HTTP ' + r.status); e.detail = { status: r.status, server: r.headers.get('server'), cf: r.headers.get('cf-mitigated'), body: t.slice(0, 160) }; throw e; }
     const data = await r.json();
