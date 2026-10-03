@@ -30,6 +30,7 @@
   var form = document.getElementById('stay-search');
   var status = document.getElementById('homes-status');
   var filterEl = document.getElementById('homes-filter');
+  var MODEL = { Luna: 'Luna_4870.jpg', Selva: 'Selva_5940.jpg', Sol: 'Sol_4814.jpg', Jaguar: 'Jaguar_3333.jpg' };
   var homes = [], filter = 'all', live = true, boomSearch = '';
 
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
@@ -53,7 +54,8 @@
     var spec = [h.bedrooms && h.bedrooms + ' ' + T.bed, h.bathrooms && h.bathrooms + ' ' + T.bath, h.guests && h.guests + ' ' + T.guests].filter(Boolean).join(' &middot; ');
     var href = h.url || ('https://wa.me/15128096438?text=' + encodeURIComponent(T.wa.replace(/&[a-z]+;/g, '') + h.name));
     var sum = h.summary && (typeof h.summary === 'object' ? (es ? h.summary.es : h.summary.en) : h.summary);
-    return '<article class="home"><div class="home__shot">' + (h.image ? '<img src="' + esc(img(h.image)) + '" alt="' + esc(h.name) + '" loading="lazy">' : '') +
+    var alts = (h.images || []).filter(function (u) { return u !== h.image; }).map(img).join('|');
+    return '<article class="home"><div class="home__shot">' + (h.image ? '<img src="' + esc(img(h.image)) + '" alt="' + esc(h.name) + '" referrerpolicy="no-referrer" decoding="async" data-model="' + esc(h.model || '') + '" data-alt="' + esc(alts) + '">' : '') +
       (h.model ? '<span class="home__tag">' + esc(h.model) + (h.pool ? ' &middot; ' + T.pool : '') + '</span>' : (h.pool ? '<span class="home__tag">' + T.pool + '</span>' : '')) +
       '</div><div class="home__body"><h3>' + esc(h.name) + '</h3><p class="home__spec">' + spec + '</p>' +
       (sum ? '<p class="home__spec">' + sum + '</p>' : '') +
@@ -62,6 +64,15 @@
   function render(dated) {
     var list = homes.filter(function (h) { return filter === 'all' || String(h.bedrooms) === filter; });
     grid.innerHTML = list.map(function (h) { return card(h, dated); }).join('');
+    // if a photo fails, try the next one Boom gave us; if none load, show the AMARI fallback
+    grid.querySelectorAll('.home__shot img').forEach(function (im) {
+      im.addEventListener('error', function () {
+        var rest = (im.dataset.alt || '').split('|').filter(Boolean);
+        if (rest.length) { im.dataset.alt = rest.slice(1).join('|'); im.src = rest[0]; }
+        else if (!im.dataset.fb) { im.dataset.fb = 1; im.src = new URL('img/' + (MODEL[im.dataset.model] || 'aerial.jpg'), base).href; }
+        else im.remove();
+      });
+    });
   }
   function filters(dated) {
     if (!filterEl) return;

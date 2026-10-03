@@ -30,11 +30,14 @@ export default async function handler(req, res) {
       .filter((l) => AMARI.test(l.nickname || ''))
       .map((l) => {
         const model = (l.nickname.split('-')[1] || '').replace(/^./, (c) => c.toUpperCase());
-        const img = l.picture ? l.picture.replace('/upload/', '/upload/c_fill,w_900,h_675,q_auto,f_auto/') : null;
+        // Boom's own photo URLs, untouched (Cloudinary may reject custom transforms); extras are fallbacks.
+        const pics = (l.pictures || []).map((x) => (typeof x === 'string' ? x : x && (x.original || x.url || x.large || x.thumbnail))).filter(Boolean);
+        const images = [...new Set([l.picture, ...pics].filter((u) => typeof u === 'string' && /^https?:/.test(u)))].slice(0, 4);
+        const img = images[0] || null;
         return {
           id: l.id, name: l.title, model, unit: l.nickname.split('-')[0],
           bedrooms: l.beds || null, bathrooms: l.baths || null, guests: l.accommodates || null,
-          pool: true, image: img, url: `${BOOM}/listing/${l.id}?${link}`,
+          pool: true, image: img, images, url: `${BOOM}/listing/${l.id}?${link}`,
         };
       });
     res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=1800');
