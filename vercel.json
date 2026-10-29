@@ -7,8 +7,13 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/food",
+      "destination": "/eat",
+      "permanent": true
+    },
+    {
       "source": "/cidro",
-      "destination": "/food",
+      "destination": "/eat",
       "permanent": true
     },
     {
@@ -18,7 +23,7 @@
     },
     {
       "source": "/kitchen",
-      "destination": "/food",
+      "destination": "/eat",
       "permanent": true
     },
     {
